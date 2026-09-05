@@ -1,0 +1,177 @@
+:root {
+  --background: #f2f5f7;
+  --text: #27323b;
+  --heading: #31404b;
+  --accent: #6b2136;
+  --accent-dark: #501629;
+  --border: #cad3d8;
+  --panel: #dfe7ec;
+  --header: #252a2c;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font: 1rem/1.65 Arial, Helvetica, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 3px solid #a44a65; outline-offset: 4px; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { color: var(--heading); line-height: 1.2; }
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: 1.65rem; }
+h3 { font-size: 1.35rem; }
+p { max-width: 70ch; }
+
+.skip {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 10;
+  background: white;
+  padding: 1rem;
+}
+.skip:focus { top: 1rem; }
+
+.site-header {
+  background: var(--header);
+  color: #f4f7f8;
+}
+
+.header-inner,
+.site-footer,
+main {
+  width: min(1184px, calc(100% - 6rem));
+  margin: 0 auto;
+}
+
+.header-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand { font-weight: 700; }
+nav { display: flex; gap: .4rem; }
+nav a { padding: .7rem 1rem; border-radius: 3px; }
+nav a:hover, nav a[aria-current="page"] { background: var(--accent); }
+
+.about {
+  min-height: 70vh;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: start;
+  gap: 4rem;
+  padding: 4rem 0;
+}
+
+.bio {
+  margin-top: 1.5rem;
+  color: #3f4d57;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.headshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 14px 34px rgb(30 38 43 / 16%);
+}
+
+.page { min-height: 70vh; padding: 4rem 0 5rem; }
+
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.summary { margin-top: 1rem; color: #53616b; }
+
+.button {
+  display: inline-flex;
+  padding: .85rem 1.2rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 3px;
+}
+.button:hover { background: var(--accent-dark); }
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 5rem;
+}
+
+.section-title {
+  color: var(--accent);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.job { margin-bottom: 2rem; }
+.meta { margin: .45rem 0; color: #596872; font-size: .9rem; }
+.job ul { margin: .7rem 0; padding-left: 1.2rem; color: #3f4d57; }
+.job li { margin: .35rem 0; }
+
+.resume-side {
+  height: fit-content;
+  padding: 2rem;
+  background: var(--panel);
+}
+.resume-side section + section { margin-top: 2rem; }
+.resume-side p { margin-top: .5rem; }
+
+.work-list { display: grid; gap: 2rem; }
+.work-card { padding: 2rem; background: white; border: 1px solid var(--border); }
+.work-card h2 { margin-bottom: 1rem; }
+.work-card p { color: #3f4d57; }
+.tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0; }
+.tags span { background: #e5ebef; padding: .25rem .65rem; font-size: .85rem; }
+.reflection { border-left: 2px solid var(--accent); padding-left: 1rem; margin: 1.5rem 0; }
+.work-card .meta { margin-top: .75rem; }
+
+.footer-wrap { background: var(--header); color: #cbd4d9; }
+.site-footer {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: .85rem;
+}
+
+@media (max-width: 760px) {
+  .header-inner, .site-footer, main { width: min(100% - 2.6rem, 1184px); }
+  .header-inner { align-items: flex-start; flex-direction: column; padding: 1.1rem 0; gap: .75rem; }
+  nav { width: 100%; gap: .1rem; }
+  nav a { padding: .6rem .75rem; font-size: .9rem; }
+  .about { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 0; }
+  .headshot { grid-row: 1; max-width: 440px; }
+  .page { padding: 2.5rem 0; }
+  .page-heading { align-items: flex-start; flex-direction: column; }
+  .resume-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .work-card { padding: 1.5rem; }
+}
+
+@media print {
+  .site-header, .footer-wrap, .button { display: none; }
+  main { width: 100%; }
+  .resume-grid { display: block; }
+  .resume-side { background: white; padding: 0; }
+  .job { break-inside: avoid; }
+}
